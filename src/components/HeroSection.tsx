@@ -2,6 +2,13 @@ import ParticleBackground from './ParticleBackground';
 import AnimatedSection from './AnimatedSection';
 
 export default function HeroSection() {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative h-screen w-full bg-[#121212] flex items-center justify-center overflow-hidden">
       <ParticleBackground opacity={0.6} />
@@ -28,7 +35,10 @@ export default function HeroSection() {
         </AnimatedSection>
 
         <AnimatedSection animation="scale-up" delay={800}>
-          <button className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(255,122,89,0.6)] focus:outline-none focus:ring-4 focus:ring-[#FF7A59]/50 animate-pulse-slow">
+          <button
+            onClick={scrollToAbout}
+            className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(255,122,89,0.6)] focus:outline-none focus:ring-4 focus:ring-[#FF7A59]/50 animate-pulse-slow"
+          >
             See The Process
             <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-300"></span>
           </button>
