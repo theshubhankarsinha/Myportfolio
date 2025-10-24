@@ -37,10 +37,11 @@ export default function AdminPage({ onBack }: AdminPageProps) {
             setShowRegister(false);
             window.history.replaceState({}, '', window.location.pathname);
           }}
+          onBack={onBack}
         />
       );
     }
-    return <AdminLogin onLoginSuccess={() => setLoginSuccess(true)} />;
+    return <AdminLogin onLoginSuccess={() => setLoginSuccess(true)} onBack={onBack} />;
   }
 
   return <AdminDashboard onBack={onBack} />;

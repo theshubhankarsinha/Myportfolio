@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { UserPlus } from 'lucide-react';
+import { UserPlus, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface AdminRegisterProps {
   onRegisterSuccess: () => void;
   onBackToLogin: () => void;
+  onBack?: () => void;
 }
 
-export default function AdminRegister({ onRegisterSuccess, onBackToLogin }: AdminRegisterProps) {
+export default function AdminRegister({ onRegisterSuccess, onBackToLogin, onBack }: AdminRegisterProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -44,7 +45,16 @@ export default function AdminRegister({ onRegisterSuccess, onBackToLogin }: Admi
   return (
     <div className="min-h-screen bg-[#121212] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
-        <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-800">
+        <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-800 relative">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
+              title="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
           <div className="flex items-center justify-center mb-8">
             <div className="w-16 h-16 bg-[#00A9FF] rounded-full flex items-center justify-center">
               <UserPlus className="w-8 h-8 text-white" />
