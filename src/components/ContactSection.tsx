@@ -41,7 +41,7 @@ export default function ContactSection() {
           </button>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/shubhankarsinha/"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative px-8 py-10 bg-gray-800/40 backdrop-blur-sm border border-gray-700 rounded-2xl hover:border-[#00A9FF] smooth-transition hover:scale-105 text-center"
