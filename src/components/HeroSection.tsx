@@ -17,14 +17,14 @@ export default function HeroSection() {
         <AnimatedSection animation="scale-up" delay={200}>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
             <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
-              Conductor of Controlled Chaos.
+              Shubhankar Sinha
             </span>
           </h1>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay={400}>
           <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 font-normal">
-            I translate strategic goals into executable plans.
+            Your next high-impact hire, ready to wear multiple hats and execute at high-velocity.
           </p>
         </AnimatedSection>
 
