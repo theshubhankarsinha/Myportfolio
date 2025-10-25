@@ -10,28 +10,45 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    if (projects.length === 0) return;
+    console.log('🎠 HeroCarousel: Received projects:', projects.length);
+    if (projects.length === 0) {
+      console.warn('⚠️ HeroCarousel: No projects to display');
+      return;
+    }
 
+    console.log('▶️ HeroCarousel: Starting auto-rotation with', projects.length, 'projects');
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % projects.length);
+        setCurrentIndex((prev) => {
+          const nextIndex = (prev + 1) % projects.length;
+          console.log(`🔄 Transitioning from slide ${prev} to ${nextIndex}`);
+          return nextIndex;
+        });
         setIsTransitioning(false);
       }, 300);
     }, 7000);
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log('⏹️ HeroCarousel: Stopping auto-rotation');
+      clearInterval(interval);
+    };
   }, [projects.length]);
 
   if (projects.length === 0) {
+    console.log('🚫 HeroCarousel: Rendering empty state');
     return (
       <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A] border-2 border-[#00A9FF]/20 flex items-center justify-center">
-        <p className="text-white/40 text-lg">No featured projects</p>
+        <div className="text-center">
+          <p className="text-white/40 text-lg mb-2">No featured projects yet</p>
+          <p className="text-white/30 text-sm">Add projects via the Admin Panel</p>
+        </div>
       </div>
     );
   }
 
   const currentProject = projects[currentIndex];
+  console.log('📺 HeroCarousel: Displaying project:', currentProject.title);
 
   return (
     <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,169,255,0.3)] border-2 border-[#00A9FF]/30 hover:border-[#00A9FF]/50 hover:shadow-[0_0_60px_rgba(0,169,255,0.5)] transition-all duration-500">

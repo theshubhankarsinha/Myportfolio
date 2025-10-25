@@ -6,16 +6,40 @@ import { getActiveFeaturedProjects, type HeroFeaturedProject } from '../lib/hero
 
 export default function HeroSection() {
   const [featuredProjects, setFeaturedProjects] = useState<HeroFeaturedProject[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadFeaturedProjects();
   }, []);
 
   const loadFeaturedProjects = async () => {
-    console.log('Loading featured projects...');
-    const projects = await getActiveFeaturedProjects();
-    console.log('Featured projects loaded:', projects);
-    setFeaturedProjects(projects);
+    try {
+      console.log('🎯 HeroSection: Loading featured projects...');
+      setLoading(true);
+      const projects = await getActiveFeaturedProjects();
+      console.log('✅ HeroSection: Featured projects loaded:', projects);
+      console.log('📊 Number of projects:', projects.length);
+
+      if (projects.length === 0) {
+        console.warn('⚠️ No active featured projects found in database');
+      } else {
+        projects.forEach((project, index) => {
+          console.log(`📌 Project ${index + 1}:`, {
+            title: project.title,
+            hasImage: !!project.image_url,
+            imageUrl: project.image_url,
+            isActive: project.is_active,
+            displayOrder: project.display_order
+          });
+        });
+      }
+
+      setFeaturedProjects(projects);
+    } catch (err) {
+      console.error('❌ Error loading featured projects:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const scrollToAbout = () => {
@@ -71,7 +95,16 @@ export default function HeroSection() {
         <div className="w-full lg:w-[50%] xl:w-[55%] flex items-center justify-center">
           <AnimatedSection animation="scale-up" delay={600}>
             <div className="w-full max-w-4xl">
-              <HeroCarousel projects={featuredProjects} />
+              {loading ? (
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A] border-2 border-[#00A9FF]/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00A9FF] mx-auto mb-4"></div>
+                    <p className="text-white/60 text-sm">Loading projects...</p>
+                  </div>
+                </div>
+              ) : (
+                <HeroCarousel projects={featuredProjects} />
+              )}
             </div>
           </AnimatedSection>
         </div>
