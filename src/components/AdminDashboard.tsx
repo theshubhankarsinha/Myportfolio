@@ -6,6 +6,7 @@ import GalleryManager from './GalleryManager';
 import ExperienceManager from './ExperienceManager';
 import PortfolioManager from './PortfolioManager';
 import TestimonialsManager from './TestimonialsManager';
+import HeroProjectManager from './HeroProjectManager';
 
 interface AdminDashboardProps {
   onBack?: () => void;
@@ -272,6 +273,10 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
               Max size: 10MB. PDF format only
             </p>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <HeroProjectManager />
         </div>
 
         <div className="mt-8">

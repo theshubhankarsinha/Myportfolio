@@ -1,7 +1,21 @@
+import { useState, useEffect } from 'react';
 import ParticleBackground from './ParticleBackground';
 import AnimatedSection from './AnimatedSection';
+import HeroCarousel from './HeroCarousel';
+import { getActiveFeaturedProjects, type HeroFeaturedProject } from '../lib/heroProjectService';
 
 export default function HeroSection() {
+  const [featuredProjects, setFeaturedProjects] = useState<HeroFeaturedProject[]>([]);
+
+  useEffect(() => {
+    loadFeaturedProjects();
+  }, []);
+
+  const loadFeaturedProjects = async () => {
+    const projects = await getActiveFeaturedProjects();
+    setFeaturedProjects(projects);
+  };
+
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -11,11 +25,15 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative h-screen w-full bg-[#121212] flex items-center justify-center overflow-hidden">
-      <ParticleBackground opacity={0.6} />
+      <HeroCarousel projects={featuredProjects} />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
+      <div className="absolute inset-0 bg-black/60 z-10" />
+
+      <ParticleBackground opacity={0.4} />
+
+      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center pt-20">
         <AnimatedSection animation="scale-up" delay={200}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
             <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
               Conductor of Controlled Chaos.
             </span>
@@ -23,13 +41,13 @@ export default function HeroSection() {
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay={400}>
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 font-normal">
+          <p className="text-xl md:text-2xl lg:text-3xl text-white mb-6 font-normal drop-shadow-lg">
             I translate strategic goals into executable plans.
           </p>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay={600}>
-          <p className="text-xl md:text-2xl lg:text-3xl text-[#00A9FF] mb-12 font-normal max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl lg:text-3xl text-white mb-12 font-normal max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
             Building the systems, streamlining the operations, and managing the mission. From whiteboard to launch day.
           </p>
         </AnimatedSection>
