@@ -25,15 +25,15 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
 
   if (projects.length === 0) {
     return (
-      <div className="absolute inset-0 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A]" />
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A]" />
     );
   }
 
   const currentProject = projects[currentIndex];
 
   return (
-    <>
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative w-full h-full overflow-hidden">
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -76,12 +76,12 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
 
       {currentProject && (
         <div
-          className={`absolute bottom-8 left-8 z-30 transition-opacity duration-500 ${
+          className={`absolute top-4 left-4 z-30 transition-opacity duration-500 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <div className="backdrop-blur-md bg-black/40 px-6 py-3 rounded-full border border-white/10 shadow-lg">
-            <p className="text-sm font-semibold text-white/90 tracking-wide">
+          <div className="backdrop-blur-md bg-black/40 px-5 py-2.5 rounded-full border border-white/10 shadow-lg">
+            <p className="text-xs md:text-sm font-semibold text-white/90 tracking-wide">
               <span className="text-[#00A9FF]">Featured:</span> {currentProject.title}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
       )}
 
       {projects.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {projects.map((_, index) => (
             <button
               key={index}
@@ -110,6 +110,6 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }

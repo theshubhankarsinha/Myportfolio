@@ -25,31 +25,41 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative h-screen w-full bg-[#121212] flex items-center justify-center overflow-hidden">
-      <HeroCarousel projects={featuredProjects} />
-
-      <div className="absolute inset-0 bg-black/60 z-10" />
-
       <ParticleBackground opacity={0.4} />
 
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center pt-20">
-        <AnimatedSection animation="scale-up" delay={200}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
-            <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
-              Conductor of Controlled Chaos.
-            </span>
-          </h1>
-        </AnimatedSection>
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
+        <div className="text-center mb-16">
+          <AnimatedSection animation="scale-up" delay={200}>
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight drop-shadow-2xl">
+              <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
+                Shubhankar Sinha
+              </span>
+            </h1>
+          </AnimatedSection>
 
-        <AnimatedSection animation="fade-up" delay={400}>
-          <p className="text-xl md:text-2xl lg:text-3xl text-white mb-6 font-normal drop-shadow-lg">
-            I translate strategic goals into executable plans.
-          </p>
-        </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={300}>
+            <p className="text-lg md:text-xl text-white/80 mb-8 font-light italic drop-shadow-lg">
+              your next hire that can wear multiple hats, and wants to get things done
+            </p>
+          </AnimatedSection>
 
-        <AnimatedSection animation="fade-up" delay={600}>
-          <p className="text-xl md:text-2xl lg:text-3xl text-white mb-12 font-normal max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
-            Building the systems, streamlining the operations, and managing the mission. From whiteboard to launch day.
-          </p>
+          <AnimatedSection animation="fade-up" delay={400}>
+            <p className="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-normal drop-shadow-lg">
+              I translate strategic goals into executable plans.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={500}>
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-12 font-normal max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+              Building the systems, streamlining the operations and managing the mission. From whiteboard to launch day.
+            </p>
+          </AnimatedSection>
+        </div>
+
+        <AnimatedSection animation="scale-up" delay={600}>
+          <div className="w-full max-w-3xl mx-auto mb-12">
+            <HeroCarousel projects={featuredProjects} />
+          </div>
         </AnimatedSection>
 
         <AnimatedSection animation="scale-up" delay={800}>
