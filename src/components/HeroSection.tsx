@@ -12,7 +12,9 @@ export default function HeroSection() {
   }, []);
 
   const loadFeaturedProjects = async () => {
+    console.log('Loading featured projects...');
     const projects = await getActiveFeaturedProjects();
+    console.log('Featured projects loaded:', projects);
     setFeaturedProjects(projects);
   };
 

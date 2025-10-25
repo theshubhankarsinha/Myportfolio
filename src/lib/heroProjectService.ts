@@ -21,9 +21,11 @@ export async function getActiveFeaturedProjects(): Promise<HeroFeaturedProject[]
 
   if (error) {
     console.error('Error fetching active featured projects:', error);
+    console.error('Error details:', JSON.stringify(error, null, 2));
     return [];
   }
 
+  console.log('Successfully fetched featured projects:', data?.length || 0, 'projects');
   return data || [];
 }
 
