@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { Target, Wand2, Lightbulb, Mountain, Download } from 'lucide-react';
-import { getAboutSection, getGalleryImages, type AboutSection as AboutSectionData, type GalleryImage } from '../lib/aboutService';
-import ImageCarousel from './ImageCarousel';
+import { getAboutSection, type AboutSection as AboutSectionData } from '../lib/aboutService';
+import { getActiveFeaturedProjects, type HeroFeaturedProject } from '../lib/heroProjectService';
+import HeroCarousel from './HeroCarousel';
 import ParticleBackground from './ParticleBackground';
 import AnimatedSection from './AnimatedSection';
 
 export default function AboutSection() {
   const [aboutData, setAboutData] = useState<AboutSectionData | null>(null);
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [featuredProjects, setFeaturedProjects] = useState<HeroFeaturedProject[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadAboutData() {
-      const [data, images] = await Promise.all([
+      const [data, projects] = await Promise.all([
         getAboutSection(),
-        getGalleryImages()
+        getActiveFeaturedProjects()
       ]);
       console.log('About data fetched:', data);
-      console.log('Gallery images fetched:', images);
+      console.log('Featured projects fetched:', projects);
       setAboutData(data);
-      setGalleryImages(images);
+      setFeaturedProjects(projects);
       setLoading(false);
     }
     loadAboutData();
@@ -72,24 +73,16 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <AnimatedSection animation="fade-right" delay={200} threshold={0.3}>
             <div className="flex items-start justify-center lg:justify-end">
-              <div className="relative w-full max-w-md">
+              <div className="relative w-full max-w-3xl">
               {loading ? (
-                <div className="w-full aspect-[3/4] bg-gray-800 rounded-lg animate-pulse" />
-              ) : galleryImages.length > 0 ? (
-                <ImageCarousel images={galleryImages.map(img => img.image_url)} />
-              ) : aboutData?.photo_url ? (
-                <div className="relative group">
-                  <img
-                    src={aboutData.photo_url}
-                    alt="Profile"
-                    className="w-full aspect-[3/4] object-cover rounded-lg shadow-2xl"
-                  />
-                  <div className="absolute inset-0 rounded-lg border-2 border-[#FF7A59] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A] border-2 border-[#00A9FF]/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00A9FF] mx-auto mb-4"></div>
+                    <p className="text-white/60 text-sm">Loading projects...</p>
+                  </div>
                 </div>
               ) : (
-                <div className="w-full aspect-[3/4] bg-gray-800 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500">No images uploaded</p>
-                </div>
+                <HeroCarousel projects={featuredProjects} />
               )}
               </div>
             </div>

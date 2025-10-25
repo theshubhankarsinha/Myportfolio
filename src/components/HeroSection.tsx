@@ -1,42 +1,28 @@
 import { useState, useEffect } from 'react';
 import ParticleBackground from './ParticleBackground';
 import AnimatedSection from './AnimatedSection';
-import HeroCarousel from './HeroCarousel';
-import { getActiveFeaturedProjects, type HeroFeaturedProject } from '../lib/heroProjectService';
+import ImageCarousel from './ImageCarousel';
+import { getAboutSection, getGalleryImages, type GalleryImage } from '../lib/aboutService';
 
 export default function HeroSection() {
-  const [featuredProjects, setFeaturedProjects] = useState<HeroFeaturedProject[]>([]);
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadFeaturedProjects();
+    loadGalleryImages();
   }, []);
 
-  const loadFeaturedProjects = async () => {
+  const loadGalleryImages = async () => {
     try {
-      console.log('🎯 HeroSection: Loading featured projects...');
+      console.log('🎯 HeroSection: Loading gallery images...');
       setLoading(true);
-      const projects = await getActiveFeaturedProjects();
-      console.log('✅ HeroSection: Featured projects loaded:', projects);
-      console.log('📊 Number of projects:', projects.length);
+      const images = await getGalleryImages();
+      console.log('✅ HeroSection: Gallery images loaded:', images);
+      console.log('📊 Number of images:', images.length);
 
-      if (projects.length === 0) {
-        console.warn('⚠️ No active featured projects found in database');
-      } else {
-        projects.forEach((project, index) => {
-          console.log(`📌 Project ${index + 1}:`, {
-            title: project.title,
-            hasImage: !!project.image_url,
-            imageUrl: project.image_url,
-            isActive: project.is_active,
-            displayOrder: project.display_order
-          });
-        });
-      }
-
-      setFeaturedProjects(projects);
+      setGalleryImages(images);
     } catch (err) {
-      console.error('❌ Error loading featured projects:', err);
+      console.error('❌ Error loading gallery images:', err);
     } finally {
       setLoading(false);
     }
@@ -94,16 +80,15 @@ export default function HeroSection() {
 
         <div className="w-full lg:w-[50%] xl:w-[55%] flex items-center justify-center">
           <AnimatedSection animation="scale-up" delay={600}>
-            <div className="w-full max-w-4xl">
+            <div className="w-full max-w-md">
               {loading ? (
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A] border-2 border-[#00A9FF]/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00A9FF] mx-auto mb-4"></div>
-                    <p className="text-white/60 text-sm">Loading projects...</p>
-                  </div>
-                </div>
+                <div className="w-full aspect-[3/4] bg-gray-800 rounded-lg animate-pulse" />
+              ) : galleryImages.length > 0 ? (
+                <ImageCarousel images={galleryImages.map(img => img.image_url)} />
               ) : (
-                <HeroCarousel projects={featuredProjects} />
+                <div className="w-full aspect-[3/4] bg-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-500">No images uploaded</p>
+                </div>
               )}
             </div>
           </AnimatedSection>
