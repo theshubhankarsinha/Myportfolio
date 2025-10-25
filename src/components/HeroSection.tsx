@@ -27,10 +27,10 @@ export default function HeroSection() {
     <section id="home" className="relative h-screen w-full bg-[#121212] flex items-center justify-center overflow-hidden">
       <ParticleBackground opacity={0.4} />
 
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
-        <div className="text-center mb-16">
+      <div className="relative z-20 w-full h-full flex flex-col lg:flex-row items-center justify-start px-6 lg:px-12 py-12">
+        <div className="w-full lg:w-1/4 flex flex-col justify-center items-start text-left mb-8 lg:mb-0">
           <AnimatedSection animation="scale-up" delay={200}>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight drop-shadow-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 leading-tight drop-shadow-2xl">
               <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
                 Shubhankar Sinha
               </span>
@@ -38,39 +38,43 @@ export default function HeroSection() {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={300}>
-            <p className="text-lg md:text-xl text-white/80 mb-8 font-light italic drop-shadow-lg">
+            <p className="text-sm md:text-base lg:text-lg text-white/80 mb-6 font-light italic drop-shadow-lg">
               your next hire that can wear multiple hats, and wants to get things done
             </p>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={400}>
-            <p className="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-normal drop-shadow-lg">
+            <p className="text-lg md:text-xl lg:text-xl text-white mb-4 font-normal drop-shadow-lg">
               I translate strategic goals into executable plans.
             </p>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={500}>
-            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-12 font-normal max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-base md:text-lg text-white/90 mb-8 font-normal leading-relaxed drop-shadow-lg">
               Building the systems, streamlining the operations and managing the mission. From whiteboard to launch day.
             </p>
           </AnimatedSection>
+
+          <AnimatedSection animation="scale-up" delay={800}>
+            <button
+              onClick={scrollToAbout}
+              className="group relative px-8 py-3 bg-[#FF7A59] text-white text-base font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(255,122,89,0.6)] focus:outline-none focus:ring-4 focus:ring-[#FF7A59]/50 animate-pulse-slow"
+            >
+              See The Process
+              <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-300"></span>
+            </button>
+          </AnimatedSection>
         </div>
 
-        <AnimatedSection animation="scale-up" delay={600}>
-          <div className="w-full max-w-3xl mx-auto mb-12">
-            <HeroCarousel projects={featuredProjects} />
-          </div>
-        </AnimatedSection>
+        <div className="w-full lg:w-[45%] flex items-center justify-center">
+          <AnimatedSection animation="scale-up" delay={600}>
+            <div className="w-full">
+              <HeroCarousel projects={featuredProjects} />
+            </div>
+          </AnimatedSection>
+        </div>
 
-        <AnimatedSection animation="scale-up" delay={800}>
-          <button
-            onClick={scrollToAbout}
-            className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(255,122,89,0.6)] focus:outline-none focus:ring-4 focus:ring-[#FF7A59]/50 animate-pulse-slow"
-          >
-            See The Process
-            <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-300"></span>
-          </button>
-        </AnimatedSection>
+        <div className="hidden lg:block lg:w-[30%]"></div>
 
       <style>{`
         @keyframes pulseSlow {
