@@ -121,14 +121,13 @@ export default function TestimonialsManager({ onMessage }: TestimonialsManagerPr
 
     if (selectedFile) {
       setUploading(true);
-      const uploadedUrl = await uploadTestimonialImage(selectedFile);
+      profileImageUrl = await uploadTestimonialImage(selectedFile);
       setUploading(false);
 
-      if (!uploadedUrl) {
+      if (!profileImageUrl) {
         onMessage('error', 'Failed to upload image');
         return;
       }
-      profileImageUrl = uploadedUrl;
     }
 
     const updates: Partial<Omit<Testimonial, 'id' | 'created_at' | 'updated_at'>> = {
