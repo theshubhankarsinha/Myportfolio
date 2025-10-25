@@ -25,14 +25,16 @@ export default function HeroCarousel({ projects }: HeroCarouselProps) {
 
   if (projects.length === 0) {
     return (
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A]" />
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0A0A0A] border-2 border-[#00A9FF]/20 flex items-center justify-center">
+        <p className="text-white/40 text-lg">No featured projects</p>
+      </div>
     );
   }
 
   const currentProject = projects[currentIndex];
 
   return (
-    <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,169,255,0.3)] border-2 border-[#00A9FF]/30 hover:border-[#00A9FF]/50 hover:shadow-[0_0_60px_rgba(0,169,255,0.5)] transition-all duration-500">
       <div className="relative w-full h-full overflow-hidden">
         {projects.map((project, index) => (
           <div

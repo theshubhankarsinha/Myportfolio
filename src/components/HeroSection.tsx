@@ -27,8 +27,8 @@ export default function HeroSection() {
     <section id="home" className="relative h-screen w-full bg-[#121212] flex items-center justify-center overflow-hidden">
       <ParticleBackground opacity={0.4} />
 
-      <div className="relative z-20 w-full h-full flex flex-col lg:flex-row items-center justify-start px-6 lg:px-12 py-12">
-        <div className="w-full lg:w-1/4 flex flex-col justify-center items-start text-left mb-8 lg:mb-0">
+      <div className="relative z-20 w-full h-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 px-6 lg:px-12 py-12">
+        <div className="w-full lg:w-[45%] xl:w-[40%] flex flex-col justify-center items-start text-left">
           <AnimatedSection animation="scale-up" delay={200}>
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 leading-tight drop-shadow-2xl">
               <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent animate-gradient-shift">
@@ -66,15 +66,13 @@ export default function HeroSection() {
           </AnimatedSection>
         </div>
 
-        <div className="w-full lg:w-[45%] flex items-center justify-center">
+        <div className="w-full lg:w-[50%] xl:w-[55%] flex items-center justify-center">
           <AnimatedSection animation="scale-up" delay={600}>
-            <div className="w-full">
+            <div className="w-full max-w-4xl">
               <HeroCarousel projects={featuredProjects} />
             </div>
           </AnimatedSection>
         </div>
-
-        <div className="hidden lg:block lg:w-[30%]"></div>
 
       <style>{`
         @keyframes pulseSlow {
