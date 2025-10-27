@@ -68,32 +68,16 @@ export default function HomeSection() {
           </AnimatedSection>
 
           <AnimatedSection animation="scale-up" delay={800}>
-            <button
-              onClick={scrollToPortfolio}
-              className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(255,122,89,0.6)] focus:outline-none focus:ring-4 focus:ring-[#FF7A59]/50 animate-pulse-slow"
-            >
-              See My Work
-              <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-300"></span>
-            </button>
+            <div className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 shadow-[0_0_40px_rgba(255,122,89,0.6)] animate-pulse-slow inline-block">
+              See My Projects
+              <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-30 blur-2xl"></span>
+            </div>
           </AnimatedSection>
         </div>
       </div>
 
       <div id="portfolio-grid" className="relative z-10 py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection animation="scale-up" threshold={0.3}>
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 text-center">
-              <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent">
-                The Conductor's Lab
-              </span>
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection animation="fade-up" delay={200} threshold={0.3}>
-            <p className="text-xl text-gray-400 mb-16 text-center max-w-3xl mx-auto">
-              A showcase of frameworks, not just projects. Here are the playbooks I've built for turning ideas into real-world impact.
-            </p>
-          </AnimatedSection>
-
           {loading ? (
             <div className="text-white text-xl text-center py-12">Loading playbooks...</div>
           ) : (
