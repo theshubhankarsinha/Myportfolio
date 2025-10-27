@@ -15,18 +15,52 @@ function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
   // ✅ Chatbase chatbot embed
+ // ✅ Chatbase chatbot embed
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.dataset.chatbotId = "E_9Waxlhpf_S92v0JbsVw"; // your bot ID
-    script.dataset.domain = "shubhankarsinha.com"; // optional
-    document.body.appendChild(script);
-  }, []);
+    // STEP 1: Create the window.chatbase proxy object immediately
+    if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+      window.chatbase = (...arguments) => {
+        if (!window.chatbase.q) {
+          window.chatbase.q = [];
+        }
+        window.chatbase.q.push(arguments);
+      };
+      window.chatbase = new Proxy(window.chatbase, {
+        get(target, prop) {
+          if (prop === "q") {
+            return target.q;
+          }
+          return (...args) => target(prop, ...args);
+        },
+      });
+    }
 
-  const handleBackToPortfolio = () => {
-    setShowAdmin(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    // STEP 2: Define the function to load the script
+    const onLoad = () => {
+      // Don't load twice
+      if (document.getElementById("E_9Waxlhpf_S92v0JbsVw")) {
+        return;
+      }
+      
+      const script = document.createElement("script");
+      script.src = "https://www.chatbase.co/embed.min.js";
+      
+      // Use .id and .domain (from the snippet) not dataset
+      script.id = "E_9Waxlhpf_S92v0JbsVw"; 
+      script.domain = "www.chatbase.co"; // This tells the script where *it* is from
+      
+      document.body.appendChild(script);
+    };
+
+    // STEP 3: Call the load function safely
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+      // Cleanup the event listener
+      return () => window.removeEventListener("load", onLoad);
+    }
+  }, []); // The empty array ensures this runs only once
 
   if (showAdmin) {
     return (
