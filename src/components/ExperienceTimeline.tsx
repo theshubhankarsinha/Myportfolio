@@ -98,7 +98,7 @@ export default function ExperienceTimeline() {
         </AnimatedSection>
         <AnimatedSection animation="fade-up" delay={200} threshold={0.3}>
           <p className="text-xl text-gray-400 mb-20 text-center max-w-2xl mx-auto">
-            A journey of building, scaling, and leading innovative teams.
+            A journey of building, scaling, and leading innovative teams. Click on any experience to learn more.
           </p>
         </AnimatedSection>
 
@@ -121,7 +121,6 @@ export default function ExperienceTimeline() {
                 >
                   <button
                     onClick={() => handleItemClick(item.id)}
-                    onMouseEnter={() => setActiveItem(item.id)}
                     className="group w-full bg-[#1A1A1A] hover:bg-[#222222] border-2 border-transparent hover:border-[#FF7A59] rounded-2xl p-6 smooth-transition cursor-pointer text-left hover:scale-105 hover:shadow-[0_0_30px_rgba(255,122,89,0.3)] gpu-accelerated"
                   >
                     <div className="text-[#00A9FF] text-lg font-semibold mb-2">
@@ -164,7 +163,6 @@ export default function ExperienceTimeline() {
 
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pointer-events-none">
             <div
-              onMouseLeave={handleClose}
               className="pointer-events-auto bg-[#1A1A1A] border-2 border-[#FF7A59] rounded-3xl shadow-[0_0_60px_rgba(255,122,89,0.5)] max-w-6xl w-full max-h-[90vh] overflow-y-auto transform premium-transition animate-scale-up hover:shadow-[0_0_80px_rgba(255,122,89,0.6)] gpu-accelerated"
               onClick={(e) => e.stopPropagation()}
             >
