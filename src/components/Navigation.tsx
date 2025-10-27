@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,7 +14,7 @@ export default function Navigation() {
       rafId = requestAnimationFrame(() => {
         setScrolled(window.scrollY > 50);
 
-        const sections = ['home', 'about', 'experience', 'portfolio', 'skills', 'testimonials', 'blog', 'contact'];
+        const sections = ['home', 'about', 'experience', 'skills', 'testimonials', 'blog', 'contact'];
         const scrollPosition = window.scrollY + 200;
 
         for (const sectionId of sections) {
@@ -47,7 +47,6 @@ export default function Navigation() {
     { name: 'Home', href: '#home' },
     { name: 'About Me', href: '#about' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Portfolio', href: '#portfolio' },
     { name: 'Skills', href: '#skills' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'Blog', href: '#blog' },

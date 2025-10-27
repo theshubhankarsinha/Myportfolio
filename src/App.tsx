@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import Navigation from './components/Navigation';
-import HeroSection from './components/HeroSection';
+import HomeSection from './components/HomeSection';
 import AboutSection from './components/AboutSection';
 import ExperienceTimeline from './components/ExperienceTimeline';
-import PortfolioSection from './components/PortfolioSection';
 import SkillsSection from './components/SkillsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import BlogSection from './components/BlogSection';
@@ -35,10 +34,9 @@ function App() {
       <div className="min-h-screen">
         <ScrollProgressBar />
         <Navigation />
-        <HeroSection />
+        <HomeSection />
         <AboutSection />
         <ExperienceTimeline />
-        <PortfolioSection />
         <SkillsSection />
         <TestimonialsSection />
         <BlogSection />
