@@ -17,8 +17,6 @@ function App() {
   );
 }
 
-export default App;
-
 import { useState } from 'react';
 import Navigation from './components/Navigation';
 import HomeSection from './components/HomeSection';
