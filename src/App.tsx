@@ -1,24 +1,3 @@
-import { useEffect } from "react";
-
-function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.dataset.chatbotId = "E_9Waxlhpf_S92v0JbsVw"; // your Chatbase bot ID
-    script.dataset.domain = "shubhankarsinha.com"; // optional: your domain
-    document.body.appendChild(script);
-  }, []);
-
-  return (
-    <>
-      <h1>Welcome to my portfolio</h1>
-      <p>This site showcases my projects and experiences.</p>
-    </>
-  );
-}
-
-export default App;
-
 import { useState } from 'react';
 import Navigation from './components/Navigation';
 import HomeSection from './components/HomeSection';
