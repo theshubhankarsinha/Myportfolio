@@ -76,7 +76,7 @@ export default function SkillsSection() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-[#00A9FF] via-white to-[#FF7A59] bg-clip-text text-transparent">
-                The Conductor's Toolkit
+                Shubhankar's Toolkit
               </span>
             </h2>
             <p className="text-lg md:text-xl text-[#B0B0B0] max-w-4xl mx-auto leading-relaxed">
