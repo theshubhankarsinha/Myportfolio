@@ -28,7 +28,7 @@ export async function getExperienceTimeline(): Promise<ExperienceItem[]> {
   const { data: experiences, error: expError } = await supabase
     .from('experience_timeline')
     .select('*')
-    .order('display_order', { ascending: true });
+    .order('display_order', { ascending: false });
 
   if (expError) {
     console.error('Error fetching experiences:', expError);
