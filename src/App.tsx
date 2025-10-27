@@ -1,41 +1,31 @@
-import { useEffect } from "react";
-
-function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.dataset.chatbotId = "E_9Waxlhpf_S92v0JbsVw"; // your Chatbase bot ID
-    script.dataset.domain = "shubhankarsinha.com"; // optional: your domain
-    document.body.appendChild(script);
-  }, []);
-
-  return (
-    <>
-      <h1>Welcome to my portfolio</h1>
-      <p>This site showcases my projects and experiences.</p>
-    </>
-  );
-}
-
-import { useState } from 'react';
-import Navigation from './components/Navigation';
-import HomeSection from './components/HomeSection';
-import AboutSection from './components/AboutSection';
-import ExperienceTimeline from './components/ExperienceTimeline';
-import SkillsSection from './components/SkillsSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import BlogSection from './components/BlogSection';
-import ContactSection from './components/ContactSection';
-import AdminPage from './pages/AdminPage';
-import { AuthProvider } from './contexts/AuthContext';
-import ScrollProgressBar from './components/ScrollProgressBar';
+import { useState, useEffect } from "react";
+import Navigation from "./components/Navigation";
+import HomeSection from "./components/HomeSection";
+import AboutSection from "./components/AboutSection";
+import ExperienceTimeline from "./components/ExperienceTimeline";
+import SkillsSection from "./components/SkillsSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import BlogSection from "./components/BlogSection";
+import ContactSection from "./components/ContactSection";
+import AdminPage from "./pages/AdminPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import ScrollProgressBar from "./components/ScrollProgressBar";
 
 function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
+  // ✅ Chatbase chatbot embed
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.dataset.chatbotId = "E_9Waxlhpf_S92v0JbsVw"; // your bot ID
+    script.dataset.domain = "shubhankarsinha.com"; // optional
+    document.body.appendChild(script);
+  }, []);
+
   const handleBackToPortfolio = () => {
     setShowAdmin(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (showAdmin) {
