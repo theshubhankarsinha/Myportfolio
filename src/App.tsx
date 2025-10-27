@@ -14,22 +14,24 @@ import ScrollProgressBar from "./components/ScrollProgressBar";
 function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
-  // ✅ Chatbase chatbot embed
  // ✅ Chatbase chatbot embed
   useEffect(() => {
     // STEP 1: Create the window.chatbase proxy object immediately
     if (!window.chatbase || window.chatbase("getState") !== "initialized") {
-      window.chatbase = (...arguments) => {
+      // Renamed '...arguments' to '...args' to fix strict mode error
+      window.chatbase = (...args) => { 
         if (!window.chatbase.q) {
           window.chatbase.q = [];
         }
-        window.chatbase.q.push(arguments);
+        // Renamed 'arguments' to 'args'
+        window.chatbase.q.push(args); 
       };
       window.chatbase = new Proxy(window.chatbase, {
         get(target, prop) {
           if (prop === "q") {
             return target.q;
           }
+          // Renamed '...args' here too
           return (...args) => target(prop, ...args);
         },
       });
@@ -47,7 +49,7 @@ function App() {
       
       // Use .id and .domain (from the snippet) not dataset
       script.id = "E_9Waxlhpf_S92v0JbsVw"; 
-      script.domain = "www.chatbase.co"; // This tells the script where *it* is from
+      script.domain = "www.chatbase.co"; 
       
       document.body.appendChild(script);
     };
