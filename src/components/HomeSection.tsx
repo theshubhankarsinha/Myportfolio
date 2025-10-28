@@ -69,7 +69,7 @@ export default function HomeSection() {
 
           <AnimatedSection animation="scale-up" delay={800}>
             <div className="group relative px-10 py-4 bg-[#FF7A59] text-white text-lg font-semibold rounded-full transition-all duration-300 shadow-[0_0_40px_rgba(255,122,89,0.6)] animate-pulse-slow inline-block">
-              Click on the Projects to check out the MVPs, and know more.
+              Click on the below Projects to check out the MVPs, and know more.
               <span className="absolute inset-0 rounded-full bg-[#FF7A59] opacity-30 blur-2xl"></span>
             </div>
           </AnimatedSection>
