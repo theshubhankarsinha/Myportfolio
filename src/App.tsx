@@ -14,6 +14,10 @@ import ScrollProgressBar from "./components/ScrollProgressBar";
 function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
+  const handleBackToPortfolio = () => {
+    setShowAdmin(false);
+  };
+
  // ✅ Chatbase chatbot embed
   useEffect(() => {
     // STEP 1: Create the window.chatbase proxy object immediately
