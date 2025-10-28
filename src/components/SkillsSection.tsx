@@ -62,7 +62,7 @@ export default function SkillsSection() {
         "Business: Statistics, Corporate Finance",
         "Prototyping: Bolt, Netlify, Figma",
         "Engineering: CATIA, SolidWorks",
-        "PM Tools: Jira, Notion, Confluence, Asana"
+        "PM Tools: Jira, Notion, Confluence, Asana, A/B Testing"
       ]
     }
   ];
